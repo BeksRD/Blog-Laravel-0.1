@@ -10,37 +10,17 @@
         <a class="btn btn-success" href="/add/photo">Add Photo</a>
     </div>
     <div class="photos">
-        <div class="col-md-3">
-            <img src="/images/grid-item-image-8.jpg" class="img-thumbnail" alt="">
+        <div class="row">
+        @foreach($images as $image)
+        <div class="col-3">
+            <img src="{{$image->image}}" class="img-thumbnail" alt="">
             <div class="buttons">
-                <button type="button" class="btn btn-primary" onclick="window.location.href='/show'">Show</button>
-                <button type="button" class="btn btn-warning" onclick="window.location.href='/edit'">Edit</button>
-                <button type="button" class="btn btn-danger" onclick="window.location.href='/show'">Delete</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='/show/{{$image->id}}'">Show</button>
+                <button type="button" class="btn btn-warning" onclick="window.location.href='/edit/{{$image->id}}'">Edit</button>
+                <button type="button" class="btn btn-danger" onclick="alert('are you sure?');window.location.href='/delete/{{$image->id}}'">Delete</button>
             </div>
         </div>
-        <div class="col-md-3">
-            <img src="/images/grid-item-image-8.jpg" class="img-thumbnail" alt="">
-            <div class="buttons">
-                <button type="button" class="btn btn-primary" onclick="window.location.href='/show'">Show</button>
-                <button type="button" class="btn btn-warning" onclick="window.location.href='/edit'">Edit</button>
-                <button type="button" class="btn btn-danger" onclick="window.location.href='/show'">Delete</button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <img src="/images/grid-item-image-8.jpg" class="img-thumbnail" alt="">
-            <div class="buttons">
-                <button type="button" class="btn btn-primary" onclick="window.location.href='/show'">Show</button>
-                <button type="button" class="btn btn-warning" onclick="window.location.href='/edit'">Edit</button>
-                <button type="button" class="btn btn-danger" onclick="window.location.href='/show'">Delete</button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <img src="/images/grid-item-image-8.jpg" class="img-thumbnail" alt="">
-            <div class="buttons">
-                <button type="button" class="btn btn-primary" onclick="window.location.href='/show'">Show</button>
-                <button type="button" class="btn btn-warning" onclick="window.location.href='/edit'">Edit</button>
-                <button type="button" class="btn btn-danger" onclick="window.location.href='/show'">Delete</button>
-            </div>
+        @endforeach
         </div>
     </div>
 </div>

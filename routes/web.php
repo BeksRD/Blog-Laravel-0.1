@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,34 +16,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    $image = DB::table('image')
-        ->select('*')
-        ->get();
-    dd($image->pluck('image')->all());
-    dd(get_class_methods($image));
-    return view('homepage');
-});
+Route::get('/', [ImageController::class,'index']);
 
-Route::get('/about', function () {
-    return view('about');
-});
+Route::get('/about', [HomeController::class,'about']);
 
 
-Route::get('/add/photo', function () {
-    return view('add_photo');
-});
-Route::get('/show',function (){
-    return view('show');
-});
+Route::get('/add/photo', [ImageController::class,'addPhoto']);
+Route::get('/show/{id}',[ImageController::class,'showOne']);
 
-Route::get('/edit', function (){
-    return view('edit');
-});
+Route::get('/edit/{id}', [ImageController::class,'edit']);
 
- Route::post('/stored', function (Request $request){
-     $image = $request->file('image');
-     $fileName = $image->store('images');
-     DB::table('image')->insert(['image'=>$fileName]);
-     return redirect('/');
- });
+Route::post('/store/update/{id}', [ImageController::class,'update']);
+
+ Route::post('/stored', [ImageController::class,'stored']);
+
+ Route::get('/delete/{id}',[ImageController::class,'delete']);

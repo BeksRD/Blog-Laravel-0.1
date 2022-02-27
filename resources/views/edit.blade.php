@@ -5,10 +5,11 @@
         <div class="row">
             <div class="col-md-5 edit-section">
                 <h1>Edit Image</h1>
-                <img src="/images/grid-item-image-8.jpg" class="img img-thumbnail" alt="">
-                <form action="" method="post" enctype="multipart/form-data">
+                <img src="/{{$image->image}}" class="img img-thumbnail" alt="">
+                <form action="/store/update/{{$image->id}}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-control">
-                        <input type="file">
+                        <input type="file" name="image">
                     </div>
                     <button type="submit" class="btn btn-warning">Edit</button>
                 </form>
